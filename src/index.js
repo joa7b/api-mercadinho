@@ -1,7 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const routes = require('./routes/produto.route');
+const routesProdutos = require('./routes/produto.route');
+const routesUser = require('./routes/user.route');
 const connectToDatabase = require('./database/database');
 
 const port = process.env.PORT || 3001;
@@ -11,7 +12,9 @@ connectToDatabase();
 
 app.use(express.json());
 app.use(cors());
-app.use('/', routes);
+app.use('/', routesProdutos);
+app.use('/usuario', routesUser)
+
 
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
