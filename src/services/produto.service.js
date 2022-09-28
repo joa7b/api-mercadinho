@@ -6,7 +6,7 @@ const findProdutoService = async () => {
 };
 
 const findProdutoByIdService = async (id) => {
-  return await Produto.find({_id:id});
+  return await Produto.find({ _id: id });
 };
 
 const createProdutoService = async (newProduto) => {
@@ -18,17 +18,19 @@ const createProdutoService = async (newProduto) => {
 
 const updateProdutoService = async (id, produtoEdited) => {
   //produtoEdited['_id'] = id;
-  return await Produto.findOneAndUpdate({_id:id}, produtoEdited, {new: true});
+  return await Produto.findOneAndUpdate({ _id: id }, produtoEdited, {
+    new: true,
+  });
 };
 
 const deleteProdutoService = async (id) => {
-  return await Produto.findOneAndDelete({_id:id});
+  return await Produto.findOneAndDelete({ _id: id });
 };
 
 module.exports = {
-    findProdutoService,
-    findProdutoByIdService,
-    createProdutoService,
-    updateProdutoService,
-    deleteProdutoService
+  findProdutoService,
+  findProdutoByIdService,
+  createProdutoService,
+  updateProdutoService,
+  deleteProdutoService,
 };

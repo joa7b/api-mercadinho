@@ -28,7 +28,7 @@ const createProdutoController = async (req, res) => {
   res.send(novoProduto);
 };
 
-const updateProdutoController = async(req, res) => {
+const updateProdutoController = async (req, res) => {
   const idParam = req.params.id;
 
   if (!idParam) {
@@ -60,16 +60,15 @@ const deleteProdutoController = async (req, res) => {
   if (!idParam) {
     return await res.status(400).send({ message: 'Id inválido.' });
   }
-  
+
   const produtoService = await produtosService.deleteProdutoService(idParam);
   res.send({ message: 'Personagem deletado.' });
 };
-
 
 module.exports = {
   findProdutoController,
   findProdutoByIdController,
   createProdutoController,
   updateProdutoController,
-  deleteProdutoController
+  deleteProdutoController,
 };
