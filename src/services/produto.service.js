@@ -10,8 +10,6 @@ const findProdutoByIdService = async (id) => {
 };
 
 const createProdutoService = async (newProduto) => {
-  const newId = (await Produto.length) + 1;
-  newProduto.id = newId;
   const produto = new Produto(newProduto);
   return await produto.save();
 };

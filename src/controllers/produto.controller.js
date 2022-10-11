@@ -26,7 +26,7 @@ const createProdutoController = async (req, res) => {
   }
 
   const novoProduto = await produtosService.createProdutoService(produto);
-  res.send(novoProduto);
+  res.status(201).send(novoProduto);
 };
 
 const updateProdutoController = async (req, res) => {
