@@ -19,7 +19,8 @@ const createProdutoController = async (req, res) => {
     !produto.name ||
     !produto.description ||
     !produto.price ||
-    !produto.quantity
+    !produto.image ||
+    !produto.measure
   ) {
     return await res.status(400).send({ message: 'Preencha todos os campos.' });
   }
@@ -42,7 +43,8 @@ const updateProdutoController = async (req, res) => {
     !produtoEdit.name ||
     !produtoEdit.price ||
     !produtoEdit.description ||
-    !produtoEdit.quantity
+    !produtoEdit.image ||
+    !produtoEdit.measure
   ) {
     return res.status(400).send({ message: 'Preencha todos os campos.' });
   }
