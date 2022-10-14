@@ -24,9 +24,12 @@ const createProdutoController = async (req, res) => {
   ) {
     return await res.status(400).send({ message: 'Preencha todos os campos.' });
   }
-
+  
+  
   const novoProduto = await produtosService.createProdutoService(produto);
+  
   res.status(201).send(novoProduto);
+  
 };
 
 const updateProdutoController = async (req, res) => {
