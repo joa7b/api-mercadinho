@@ -1,14 +1,22 @@
 const produtosService = require('../services/produto.service');
 
 const findProdutoController = async (req, res) => {
-  const allProdutos = await produtosService.findProdutoService();
-  res.send(allProdutos);
+  try {
+    const allProdutos = await produtosService.findProdutoService();
+    res.send(allProdutos);
+  } catch (err) {
+    res.status(400).json(err);
+  }
 };
 
 const findProdutoByIdController = async (req, res) => {
   const idParam = req.params.id;
-  const chosenProduto = await produtosService.findProdutoByIdService(idParam);
-  res.send(chosenProduto);
+  try {
+    const chosenProduto = await produtosService.findProdutoByIdService(idParam);
+    res.send(chosenProduto);
+  } catch (err) {
+    res.status(400).json(err);
+  }
 };
 
 const createProdutoController = async (req, res) => {
@@ -24,12 +32,13 @@ const createProdutoController = async (req, res) => {
   ) {
     return await res.status(400).send({ message: 'Preencha todos os campos.' });
   }
-  
-  
-  const novoProduto = await produtosService.createProdutoService(produto);
-  
-  res.status(201).send(novoProduto);
-  
+
+  try {
+    const novoProduto = await produtosService.createProdutoService(produto);
+    res.status(201).send(novoProduto);
+  } catch (err) {
+    res.status(400).json(err);
+  }
 };
 
 const updateProdutoController = async (req, res) => {
@@ -52,11 +61,15 @@ const updateProdutoController = async (req, res) => {
     return res.status(400).send({ message: 'Preencha todos os campos.' });
   }
 
-  const updateProduto = await produtosService.updateProdutoService(
-    idParam,
-    produtoEdit,
-  );
-  res.send(updateProduto);
+  try {
+    const updateProduto = await produtosService.updateProdutoService(
+      idParam,
+      produtoEdit,
+    );
+    res.send(updateProduto);
+  } catch (err) {
+    res.status(400).json(err);
+  }
 };
 
 const deleteProdutoController = async (req, res) => {
@@ -66,8 +79,12 @@ const deleteProdutoController = async (req, res) => {
     return await res.status(400).send({ message: 'Id inválido.' });
   }
 
-  const produtoService = await produtosService.deleteProdutoService(idParam);
-  res.send({ message: 'Personagem deletado.' });
+  try {
+    const produtoService = await produtosService.deleteProdutoService(idParam);
+    res.send({ message: 'Produto deletado.', produto: produtoService });
+  } catch (err) {
+    res.status(400).json(err);
+  }
 };
 
 module.exports = {
